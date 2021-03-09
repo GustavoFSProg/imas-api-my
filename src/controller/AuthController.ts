@@ -18,6 +18,10 @@ export async function register(req: Request, res: Response) {
   }
 }
 
+export async function getAll(req: Request, res: Response) {
+  return res.status(200).send({ msg: 'Entrou no GET' })
+}
+
 export async function login(req: Request, res: Response) {
   try {
     const { errors, user } = await loginValidation(req.body)
