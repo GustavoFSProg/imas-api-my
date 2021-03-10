@@ -14,5 +14,5 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["./src"]
+  "include": ["./src", "Trash/config", "Trash/routes", "Trash/utils", "Trash/controller", "Trash/validators", "Trash/globalVariables.ts"]
 }

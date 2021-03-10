@@ -1,7 +1,7 @@
 import { IUser } from 'interfaces'
 import md5 from 'md5'
 import jwt from 'jsonwebtoken'
-import User from '../models/User'
+import User from '../../src/models/User'
 
 export function encryptPassword(password: string) {
   return md5(password, process.env.SECRET as string & { asBytes: true })
@@ -50,12 +50,15 @@ export async function getUserByEmail(email: string) {
 }
 
 export async function createUser(data: IUser) {
-  const { firstname, lastname, email, password } = data
+  const { firstname, lastname, email, password, cpf, rg, telefone } = data
   const currentUser = await User.create({
     firstname,
     lastname,
     email,
     password: encryptPassword(password),
+    cpf,
+    rg,
+    telefone,
   })
   const user = (currentUser as unknown) as IUser
   return user

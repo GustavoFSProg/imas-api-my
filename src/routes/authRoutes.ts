@@ -1,12 +1,10 @@
 import { Router } from 'express'
-import { register, login, getAll } from '../controller/AuthController'
+import { register, getAll, login } from '../controller/AuthController'
 
 const route = Router()
 
-const routes = [
-  route.post('/register', register),
-  route.get('/', getAll),
-  route.post('/login', login),
-]
+route.post('/register', register)
+route.get('/', getAll)
+route.post('/login', login)
 
-export default routes
+export default route

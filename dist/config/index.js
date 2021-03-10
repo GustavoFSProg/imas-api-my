@@ -1,2 +1,0 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _createNamedExportFrom(obj, localName, importedName) { Object.defineProperty(exports, localName, {enumerable: true, get: () => obj[importedName]}); }var _startServer = require('./startServer'); _createNamedExportFrom(_startServer, 'startServer', 'default');
-var _connectDataBase = require('./connectDataBase'); _createNamedExportFrom(_connectDataBase, 'connectDataBase', 'default');
