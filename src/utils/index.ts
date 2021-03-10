@@ -1,7 +1,7 @@
 import { IUser } from 'interfaces'
 import md5 from 'md5'
 import jwt from 'jsonwebtoken'
-import User from '../../src/models/User'
+import User from '../models/User'
 
 export function encryptPassword(password: string) {
   return md5(password, process.env.SECRET as string & { asBytes: true })
@@ -21,8 +21,10 @@ export function isValidPassword(password: string) {
 export async function generateToken(data: IUser | undefined) {
   if (!data) throw Error(`Generate token error`)
   const { email, password } = data
-  const { SECRET } = process.env
-  return jwt.sign({ email, password }, SECRET || '', { expiresIn: '1d' })
+  const { GLOBAL_SALT_KEY } = process.env
+  const token = await jwt.sign({ email, password }, GLOBAL_SALT_KEY || '', { expiresIn: '1d' })
+
+  return token
 }
 
 export async function decodeToken(token: string) {
@@ -50,13 +52,13 @@ export async function getUserByEmail(email: string) {
 }
 
 export async function createUser(data: IUser) {
-  const { firstname, lastname, email, password, cpf, rg, telefone } = data
+  const { firstname, lastname, email, password, CPF, rg, telefone } = data
   const currentUser = await User.create({
     firstname,
     lastname,
     email,
     password: encryptPassword(password),
-    cpf,
+    CPF,
     rg,
     telefone,
   })

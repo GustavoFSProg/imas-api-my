@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "cpf-cnpj-validator": "^1.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "md5": "^2.3.0",
     "mongoose": "^5.11.18",
-    "sucrase": "^3.17.1"
+    "sucrase": "^3.17.1",
+    "validar-cpf": "^2.1.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
-import { verifyToken, getUserByEmail } from '../../Trash/utils'
-import { setCurrentUser } from '../../Trash/globalVariables'
+import { verifyToken, getUserByEmail } from '../utils'
+import { setCurrentUser } from '../globalVariables'
 
 export function isAuthorized(req: Request, res: Response, next: NextFunction) {
   const token = req.headers.token as string

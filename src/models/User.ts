@@ -20,7 +20,7 @@ const schema = new Schema({
     type: String,
     required: true,
   },
-  cpf: {
+  CPF: {
     type: String,
     required: true,
   },

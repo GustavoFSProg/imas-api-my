@@ -3,7 +3,7 @@ export interface IUser {
   lastname: string
   email: string
   password: string
-  cpf: string
+  CPF: string
   rg: string
   telefone: string
 }
