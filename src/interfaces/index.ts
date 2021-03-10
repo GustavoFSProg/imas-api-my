@@ -3,7 +3,5 @@ export interface IUser {
   lastname: string
   email: string
   password: string
-  CPF: string
-  rg: string
-  telefone: string
+  roles: string
 }

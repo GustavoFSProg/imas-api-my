@@ -52,15 +52,13 @@ export async function getUserByEmail(email: string) {
 }
 
 export async function createUser(data: IUser) {
-  const { firstname, lastname, email, password, CPF, rg, telefone } = data
+  const { firstname, lastname, email, password, roles } = data
   const currentUser = await User.create({
     firstname,
     lastname,
     email,
     password: encryptPassword(password),
-    CPF,
-    rg,
-    telefone,
+    roles,
   })
   const user = (currentUser as unknown) as IUser
   return user

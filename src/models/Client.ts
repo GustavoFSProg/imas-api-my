@@ -20,13 +20,18 @@ const schema = new Schema({
     type: String,
     required: true,
   },
-  roles: [
-    {
-      type: String,
-      required: true,
-      enum: ['admin', 'user'],
-    },
-  ],
+  CPF: {
+    type: String,
+    required: true,
+  },
+  rg: {
+    type: String,
+    required: true,
+  },
+  telefone: {
+    type: String,
+    required: true,
+  },
 })
 
-export default model('User', schema)
+export default model('Client', schema)
