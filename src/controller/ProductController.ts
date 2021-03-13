@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import categoryModel from '../models/categoryModel'
 import productsModel from '../models/productsModel'
 
 async function createProducts(req: Request, res: Response) {
@@ -8,6 +9,12 @@ async function createProducts(req: Request, res: Response) {
     const [name] = image.split('.')
     const filename = `${name}.jpg`
 
+    const data = req.body.category
+
+    const retorno = await categoryModel.findOne({ name: data })
+
+    if (!retorno) return res.send({ msg: 'Categoria não encontrado!' })
+
     await productsModel.create({
       title: req.body.title,
       description: req.body.description,
@@ -15,6 +22,8 @@ async function createProducts(req: Request, res: Response) {
       category: req.body.category,
       peso: req.body.peso,
       image: filename,
+      // eslint-disable-next-line no-underscore-dangle
+      categoryId: retorno,
     })
 
     return res.status(201).send({ Message: 'Produto cadastrado com sucessoo' })

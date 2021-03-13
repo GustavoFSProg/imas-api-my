@@ -48,7 +48,7 @@ export async function register(req: Request, res: Response) {
 
 export async function getAll(req: Request, res: Response) {
   try {
-    const data = await User.find({}, 'firstname lastname email roles')
+    const data = await User.find({}, 'firstname lastname email roles createdAt')
 
     return res.status(200).send(data)
   } catch (error) {

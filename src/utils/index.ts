@@ -1,7 +1,10 @@
 import { IUser } from 'interfaces'
 import md5 from 'md5'
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
 import User from '../models/User'
+
+dotenv.config()
 
 export function encryptPassword(password: string) {
   return md5(password, process.env.SECRET as string & { asBytes: true })
@@ -57,7 +60,7 @@ export async function createUser(data: IUser) {
     firstname,
     lastname,
     email,
-    password: encryptPassword(password),
+    password: md5(`${password}123sdfdsfy6m`),
     roles,
   })
   const user = (currentUser as unknown) as IUser
