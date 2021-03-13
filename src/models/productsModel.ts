@@ -1,4 +1,5 @@
-import { Schema, model } from 'mongoose'
+/* eslint-disable no-undef */
+import { Schema, model, Types } from 'mongoose'
 
 const schema = new Schema({
   title: {
@@ -12,7 +13,7 @@ const schema = new Schema({
     trim: true,
   },
   price: {
-    type: String,
+    type: Number,
     trim: true,
     index: true,
     required: true,
@@ -22,7 +23,7 @@ const schema = new Schema({
     required: true,
   },
   peso: {
-    type: Number,
+    type: Types.Decimal128,
     required: true,
   },
   image: {
