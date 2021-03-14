@@ -24,14 +24,16 @@ export function isValidPassword(password: string) {
 export async function generateToken(data: IUser | undefined) {
   if (!data) throw Error(`Generate token error`)
   const { email, password } = data
-  const { GLOBAL_SALT_KEY } = process.env
-  const token = await jwt.sign({ email, password }, GLOBAL_SALT_KEY || '', { expiresIn: '1d' })
+  const { SECRET } = process.env
+
+  const token = await jwt.sign({ email, password }, SECRET || '', { expiresIn: '1d' })
 
   return token
 }
 
 export async function decodeToken(token: string) {
   const secret = (process.env.SECRET || '') as string & { json: true }
+
   return jwt.decode(token, secret)
 }
 
@@ -60,7 +62,7 @@ export async function createUser(data: IUser) {
     firstname,
     lastname,
     email,
-    password: md5(`${password}123sdfdsfy6m`),
+    password: md5(password, process.env.SECRET as string & { asBytes: true }),
     roles,
   })
   const user = (currentUser as unknown) as IUser
