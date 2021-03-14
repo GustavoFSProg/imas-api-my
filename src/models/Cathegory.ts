@@ -5,7 +5,8 @@ const schema = new Schema({
     type: String,
     trim: true,
     required: true,
+    unique: true,
   },
 })
 
-export default model('categoryModel', schema)
+export default model('Cathegory', schema)

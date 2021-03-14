@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
-import categoryModel from '../models/categoryModel'
+import Cathegory from '../models/Cathegory'
 
-async function create(req: Request, res: Response) {
+export async function create(req: Request, res: Response) {
   try {
-    await categoryModel.create({
+    await Cathegory.create({
       name: req.body.name,
     })
 
@@ -13,14 +13,12 @@ async function create(req: Request, res: Response) {
   }
 }
 
-async function getAll(req: Request, res: Response) {
+export async function getAll(req: Request, res: Response) {
   try {
-    const data = await categoryModel.find()
+    const data = await Cathegory.find()
 
     return res.status(200).send(data)
   } catch (error) {
     return res.status(400).send({ msg: 'Erro', error })
   }
 }
-
-export default { create, getAll }

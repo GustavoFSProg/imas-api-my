@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
-import categoryModel from '../models/categoryModel'
-import productsModel from '../models/productsModel'
+import Cathegory from '../models/Cathegory'
+import Product from '../models/Product'
 
-async function createProducts(req: Request, res: Response) {
+export async function createProducts(req: Request, res: Response) {
   try {
     const { filename: image } = req.file
 
@@ -11,19 +11,19 @@ async function createProducts(req: Request, res: Response) {
 
     const data = req.body.category
 
-    const retorno = await categoryModel.findOne({ name: data })
+    const cathegory = await Cathegory.findOne({ name: data })
 
-    if (!retorno) return res.send({ msg: 'Categoria não encontrado!' })
+    if (!cathegory) return res.send({ msg: 'Categoria não encontrado!' })
 
-    await productsModel.create({
+    await Product.create({
       title: req.body.title,
       description: req.body.description,
       price: req.body.price,
       category: req.body.category,
-      peso: req.body.peso,
+      weight: req.body.weight,
       image: filename,
       // eslint-disable-next-line no-underscore-dangle
-      categoryId: retorno,
+      categoryId: cathegory,
     })
 
     return res.status(201).send({ Message: 'Produto cadastrado com sucessoo' })
@@ -32,14 +32,12 @@ async function createProducts(req: Request, res: Response) {
   }
 }
 
-async function getAll(req: Request, res: Response) {
+export async function getAll(req: Request, res: Response) {
   try {
-    const data = await productsModel.find()
+    const data = await Product.find()
 
     return res.status(200).send(data)
   } catch (error) {
     return res.status(400).send(error)
   }
 }
-
-export default { createProducts, getAll }
